@@ -1,42 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Task } from 'src/app/interfaces/task';
 import { BehaviorSubject, Observable } from '../../../node_modules/rxjs';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-
-  tasksList: Array<Task> = [];
-  doneList: Array<Task> = [];
-
   taskListObs = new BehaviorSubject<Array<Task>>([]);
-  doneListObs = new BehaviorSubject<Array<Task>>([]);
-  constructor() {
-    this.taskListObs.next(this.tasksList);
+  constructor(private http: HttpService) {
+    this.http.getTask().subscribe((tasks: Array<Task>) => {
+      this.taskListObs.next(tasks);
+    });
   }
 
   add(task: Task) {
-    this.tasksList.push(task);
-    this.taskListObs.next(this.tasksList);
+    const list = this.taskListObs.getValue();
+    list.push(task);
+    this.taskListObs.next(list);
   }
 
   delete(task: Task) {
-    this.tasksList = this.tasksList.filter(e => e !== task);
-    this.taskListObs.next(this.tasksList);
+    const list = this.taskListObs.getValue().filter(e => e !== task);
+    this.taskListObs.next(list);
   }
 
   done(task: Task) {
-    this.doneList.push(task);
-    this.delete(task);
-    this.doneListObs.next(this.doneList);
+    task.done = new Date().toLocaleString();
+    task.isDone = true;
+    const list = this.taskListObs.getValue();
+    this.taskListObs.next(list);
   }
 
   getTasksList(): Observable<Array<Task>> {
     return this.taskListObs.asObservable();
-  }
-
-  getDoneList(): Observable<Array<Task>> {
-    return this.doneListObs.asObservable();
   }
 }

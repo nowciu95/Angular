@@ -11,8 +11,8 @@ export class DoneTasksComponent implements OnInit {
 
   doneList: Array<Task> = [];
   constructor(private todoService: TodoService) {
-    todoService.getDoneList().subscribe((tasks: Array<Task>) => {
-      this.doneList = tasks;
+    todoService.getTasksList().subscribe((tasks: Array<Task>) => {
+      this.doneList = tasks.filter(e => e.isDone === true);
     });
    }
 

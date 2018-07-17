@@ -12,7 +12,7 @@ export class TodoTasksComponent implements OnInit {
   taskList: Array<Task> = [];
   constructor(private todoService: TodoService) {
     todoService.getTasksList().subscribe((tasks: Array<Task>) => {
-      this.taskList = tasks;
+      this.taskList = tasks.filter(e => e.isDone === false);
     });
    }
 
@@ -24,7 +24,6 @@ export class TodoTasksComponent implements OnInit {
   }
 
   done(task: Task) {
-    task.done = new Date();
     this.todoService.done(task);
   }
 

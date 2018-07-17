@@ -8,6 +8,8 @@ import { DoneTasksComponent } from './done-tasks/done-tasks.component';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from './services/todo.service';
 import { DateDirective } from './shered/date.directive';
+import { HttpService } from 'src/app/services/http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { DateDirective } from './shered/date.directive';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [TodoService],
+  providers: [TodoService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

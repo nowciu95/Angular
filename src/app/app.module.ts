@@ -7,13 +7,15 @@ import { TodoTasksComponent } from './todo-tasks/todo-tasks.component';
 import { DoneTasksComponent } from './done-tasks/done-tasks.component';
 import { FormsModule } from '@angular/forms';
 import { TodoService } from './services/todo.service';
+import { DateDirective } from './shered/date.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaskComponent,
     TodoTasksComponent,
-    DoneTasksComponent
+    DoneTasksComponent,
+    DateDirective
   ],
   imports: [
     BrowserModule,

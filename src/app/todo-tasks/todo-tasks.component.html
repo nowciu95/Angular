@@ -1,6 +1,6 @@
 <h4>To do tasks:</h4>
 <ul>
-  <li *ngFor="let task of taskList">
+  <li appDate [date]="task.created" *ngFor="let task of taskList">
     {{task.name}}
     <button (click)="delete(task)">Delete</button>
     <button (click)="done(task)">Done</button>

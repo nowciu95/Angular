@@ -1,0 +1,21 @@
+#container{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+}
+
+#tasksList{
+    background-color: red;
+    float: left;
+    min-width: 400px;
+    margin: 30px;
+}
+
+#doneList{
+    background-color: green;
+    float: right;
+    min-width: 400px;
+    margin: 30px;
+}

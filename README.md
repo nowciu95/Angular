@@ -1,2 +1,2 @@
 # Angular
-Prosta aplikacja w Angularze
+Prosta aplikacja w Angularze.
